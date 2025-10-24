@@ -1,0 +1,893 @@
+/* ===========================
+   Técnica — styles.css
+   Layout y estética base
+   =========================== */
+
+/* Mínimos para visualizar el esqueleto (luego pasamos a styles.css) */
+    :root { --bg-marmol: #f5f5f5; }
+    body { font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    section { padding: 72px 0; }
+    .bg-marmol { background: var(--bg-marmol); }
+    .hero {
+      min-height: 86vh;
+      background: url("assets/img/hero.jpg") center/cover no-repeat;
+      position: relative;
+      color: #fff;
+    }
+    .hero::after { content:""; position:absolute; inset:0; background: rgba(0,0,0,.35); }
+    .hero > .container { position: relative; z-index: 2; }
+    .rounded-xxl { border-radius: 2rem; }
+    .metrics .card { background: rgba(255,255,255,.75); backdrop-filter: blur(4px); }
+    .portfolio img { object-fit: cover; }
+    .brand-logo { height: 48px; object-fit: contain; }
+    footer { padding: 56px 0 24px; }
+
+
+/* -------- Variables -------- */
+:root{
+  --bg-marmol: #f3f3f3;          /* fondo claro tipo mármol */
+  --ink: #1d1d1f;                /* texto principal */
+  --ink-2: #5b5b5f;              /* texto secundario */
+  --brand: #111111;              /* acentos oscuros */
+  --white: #ffffff;
+  --radius-lg: 2rem;             /* radios amplios */
+  --shadow-1: 0 10px 30px rgba(0,0,0,.08);
+  --shadow-2: 0 8px 20px rgba(0,0,0,.06), 0 2px 6px rgba(0,0,0,.06);
+  --blur-bg: rgba(255,255,255,.72);
+}
+
+/* -------- Reset suave -------- */
+html { scroll-behavior: smooth; }
+body {
+  color: var(--ink);
+  line-height: 1.6;
+  background: var(--bg-marmol);
+}
+
+/* -------- Utilidades -------- */
+.bg-marmol{
+  background:
+    var(--bg-marmol);
+}
+.rounded-xxl{ border-radius: var(--radius-lg) !important; }
+.shadow-soft{ box-shadow: var(--shadow-1); }
+.text-muted{ color: var(--ink-2) !important; }
+
+/* -------- Tipografía -------- */
+.fw-semibold {
+  color: #003563;
+}
+
+h1, h2, h3, .display-5{
+  letter-spacing: .2px;
+}
+section h2{
+  font-weight: 700;
+}
+.lead{ color: #f0f0f0; }
+a{
+  text-decoration: none;
+  color: var(--ink-2);
+}
+
+/* Navbar fija y siempre por encima de todo */
+.navbar{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  width: 100%;
+  z-index: 9999;                /* <- más alto que cualquier card/carrusel */
+  padding: 1rem 0;
+  transition: background-color .3s, box-shadow .3s, color .3s;
+}
+
+
+/* Fondo semitransparente leve para que siempre se vea */
+.navbar.bg-transparent {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Estado sólida */
+.navbar.is-stuck {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Colores de texto según fondo */
+.navbar.bg-transparent .nav-link,
+.navbar.bg-transparent .navbar-brand {
+  color: #fff !important;
+}
+
+.navbar.is-stuck .nav-link,
+.navbar.is-stuck .navbar-brand {
+  color: #111 !important;
+}
+
+
+/* -------- Hero -------- */
+.hero{
+  min-height: fit-content;
+  display: grid !important;
+  place-items: center;
+  background: url("../img/hero.jpg") center/cover no-repeat;
+  position: static;
+
+}
+.hero::after{
+  content:"";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.35));
+}
+.hero > .container{ position: relative; z-index: 1; }
+
+.hero .btn{
+  transform: translateY(0);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.hero .btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,.25);
+}
+
+/* -------- Métricas (cards “vidriadas”) -------- */
+.metrics .card{
+  background: var(--blur-bg);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,.55);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow-2);
+}
+.metrics .display-6{ letter-spacing: 1px; }
+.metrics .card p{ color: var(--ink-2); }
+
+/* -------- Quiénes somos -------- */
+#quienes .container{
+  display: grid;
+}
+
+#quienes .col-lg-6:last-child {
+  display: flex;
+  justify-content: center;  /* centra horizontalmente */
+  align-items: center;      /* centra verticalmente */
+}
+
+#quienes .col-lg-6:last-child img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
+#quienes .btn{
+  align-self: self-end;
+}
+
+#quienes .col-lg-6{
+  align-self: center;
+}
+
+/* -------- Portfolio (grid 3x3) -------- */
+.portfolio a{
+  margin-top: 20px;
+}
+
+/* Hace que cada item tenga forma cuadrada */
+.work-item {
+  position: relative;
+  aspect-ratio: 1 / 1; /* cuadrado perfecto */
+  overflow: hidden;
+  margin: 0.3rem;
+}
+
+/* Hace que las imágenes llenen el cuadrado */
+.work-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* recorta sin deformar */
+  transition: transform 0.3s ease;
+}
+
+/* Efecto al pasar el mouse */
+.work-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Quita espacios entre columnas */
+.row.g-0 > [class*='col-'] {
+  padding: 0;
+}
+
+
+
+/* -------- Logos clientes (carrusel) -------- */
+.brand-logo{
+  height: 48px;
+  width: auto;
+  filter: grayscale(100%) contrast(1.05);
+  opacity: .8;
+  transition: filter .2s ease, opacity .2s ease, transform .2s ease;
+}
+.brand-logo:hover{
+  filter: none;
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+
+/* -------- Contacto -------- */
+#contacto ul li i{
+  width: 36px;
+  margin-left: 10px;
+}
+#contacto .ratio{
+  border-radius: 1rem;
+  box-shadow: var(--shadow-1);
+}
+
+/* -------- Footer -------- */
+footer{
+  background: var(--bg-marmol);
+  border-top: 1px solid rgba(0,0,0,.05);
+}
+footer .small{
+  color: var(--ink-2);
+}
+
+footer a:hover{
+  font-style: italic;
+}
+
+/* -------- Espaciados secciones -------- */
+section{ padding: 76px 0; }
+@media (min-width: 992px){
+  section{ padding: 96px 0; }
+}
+
+/* -------- Botones redondeados consistentes -------- */
+.btn{
+  border-radius: 999px;
+}
+.btn-outline-dark{
+  border-width: 2px;
+}
+
+/* -------- Accesibilidad y foco -------- */
+:focus-visible{
+  outline: 2px dashed #0d6efd;
+  outline-offset: 3px;
+}
+
+/* -------- Detalles visuales opcionales -------- */
+.hr-faint{
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(0,0,0,.08), transparent);
+  border: 0; margin: 2rem 0;
+}
+
+/* -------- Helpers de altura para demos (pueden removerse) -------- */
+.h-220{ height: 220px; }
+
+/* Animaciones */
+@keyframes fadeFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Estado inicial */
+.fade-side,
+.fade-right {
+  opacity: 0;
+  transform: translateX(0);
+  transition: opacity 0.3s ease;
+}
+
+/* Activa animación cuando entra */
+.fade-side.animate {
+  animation: fadeFromLeft 1s ease forwards;
+}
+
+.fade-right.animate {
+  animation: fadeFromRight 1s ease forwards;
+}
+
+/* Fade desde abajo */
+@keyframes fadeFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estado inicial */
+.fade-up {
+  opacity: 0;
+  transform: translateY(0);
+  transition: opacity 0.3s ease;
+}
+
+/* Animación cuando entra al viewport */
+.fade-up.animate {
+  animation: fadeFromBottom 1s ease forwards;
+}
+
+/* ====== Diseño horizontal ancho completo para las cards de SERVICIOS ====== */
+
+.services .row {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* espacio entre cards */
+}
+
+.services .col-md-4 {
+  width: 100%;
+  flex: 1 1 auto;
+}
+
+/* Card estilo horizontal */
+.services .card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow-1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.services .card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-2);
+}
+
+/* Imagen adaptada al texto — altura automática */
+.services .card-img-top {
+  width: 15%;
+  height: auto; /* ← se ajusta al contenido */
+  object-fit: cover;
+  border-radius: 0;
+  align-self: stretch; /* mantiene imagen alineada sin forzar altura */
+  aspect-ratio: 4 / 3;
+}
+
+/* Texto */
+.services .card-bodys {
+  width: 55%;
+  text-align: left;
+}
+
+.services .card-bodys {
+  padding-left: 1rem !important;
+}
+
+.services .card-bodys:nth-child(even) {
+  padding-right: 1rem;
+}
+
+.services .col-md-4:nth-child(even) .card {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+/* Ajustar texto de los pares */
+.services .col-md-4:nth-child(even) .card-bodys {
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .services .card {
+    flex-direction: row !important;
+  }
+
+  .services .col-md-4:nth-child(even) .card {
+    flex-direction: row-reverse !important;
+  }
+
+  .services .card-bodys:nth-child(even){
+    padding-right: 1rem;
+    padding-left: 0;
+  }
+
+  .services .card-img-top {
+    width: 40%;
+    max-width: 40% !important;
+    height: auto !important;
+    align-self: flex-start !important;
+  }
+
+  .services .card-bodys {
+    font-size: 0.5rem;
+    flex: 1;
+    padding-left: 1rem;
+    text-align: left !important;
+  }
+}
+
+/* Hace que toda la fila de contacto use flexbox y alinee verticalmente */
+#contacto .row {
+  display: flex;
+  align-items: stretch !important; /* ambas columnas misma altura */
+}
+
+/* Columna izquierda: lista de contacto */
+#contacto .col-lg-5 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* reparte los elementos verticalmente */
+}
+
+/* La lista ocupa toda la altura disponible */
+#contacto ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+  margin: 0;
+}
+
+/* Primer elemento separado del resto (empuja hacia abajo los demás) */
+#contacto ul li:first-child {
+  margin-bottom: auto;
+}
+
+/* Columna derecha (mapa) centrada verticalmente */
+#contacto .col-lg-7 {
+  display: flex;
+  align-items: center; /* centra verticalmente el mapa */
+}
+
+#contacto .ratio {
+  width: 100%;
+}
+
+/* FORMULARIO CON BARRA LATERAL */
+ .contact-form {
+  background: #fff;
+  border-left: 6px solid #003563;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+ .contact-form label {
+  font-weight: 600;
+  color: #333;
+}
+
+ .contact-form .form-control {
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+ .contact-form .form-control:focus {
+  border-color: #111;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+ .contact-form button {
+  margin-top: 1rem;
+  background: #003563;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+ .contact-form button:hover {
+  background: #333;
+  transform: translateY(-2px);
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+   .contact-form {
+    padding: 1.5rem;
+  }
+}
+
+
+/* ===== ANIMACIÓN DE INICIO (LOGO GIRANDO Y EXPANDIÉNDOSE) ===== */
+#intro-loader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:
+    radial-gradient(1200px 400px at 10% 0%, rgba(0,0,0,.02) 0, transparent 60%),
+    radial-gradient(800px 300px at 90% 20%, rgba(0,0,0,.03) 0, transparent 60%),
+    #ffffff; /* fondo mármol blanco */
+  z-index: 99999;
+  overflow: hidden;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+/* Logo girando y creciendo */
+#intro-loader img.spin-logo {
+  width: 140px;
+  height: auto;
+  opacity: 0;
+  transform: scale(0.5) rotate(0deg);
+  animation: logoAppear 2.5s ease forwards;
+}
+
+@keyframes logoAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(0deg) translate(0, 0);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1.2) rotate(180deg);
+  }
+  70% {
+    transform: scale(1) rotate(300deg);
+  }
+  100% {
+    opacity: 1; /* ← mantiene visibilidad */
+    transform: scale(0.4) rotate(360deg);
+  }
+}
+
+/* Oculta el loader al final */
+#intro-loader.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.fancy-text {
+      font-size: 7rem;
+      cursor: default;
+      user-select: none;
+      line-height: 1;
+    }
+
+    .fancy-text span {
+      display: inline-block;
+      transition:
+        transform 0.25s ease,
+        color 0.25s ease,
+        font-family 0.25s ease,
+        margin 0.25s ease;
+    }
+
+    /* Cuando la letra se activa */
+    .fancy-text span.active {
+      transform: scale(1.3) rotate(-8deg) translateY(-5px);
+      margin: 0 6px; /* separa la letra un poco */
+    }
+
+/* ===== LIGHTBOX CON NAVEGACIÓN ===== */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  z-index: 9999;
+}
+
+#lightbox.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 1rem;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+  transform: scale(0.95);
+  transition: transform 0.4s ease;
+}
+
+#lightbox.show img {
+  transform: scale(1);
+  cursor: zoom-out;
+}
+
+/* Botones de navegación */
+#lightbox .nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0);
+  border: none;
+  color: #fff;
+  font-size: 3rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.3s ease;
+}
+
+#lightbox .nav-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+#lightbox #prev-btn { left: 3%; }
+#lightbox #next-btn { right: 3%; }
+
+/* Evita scroll del body */
+body.no-scroll { overflow: hidden; }
+
+
+/* Navbar responsive */
+@media (max-width: 992px) {
+  .navbar-collapse {
+    background: white;
+    text-align: center;
+    padding: 1rem 0;
+  }
+  .navbar .nav-link {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Hero video responsive */
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Hero texto responsive */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 5rem;
+  }
+  .hero p.lead {
+    font-size: 1rem !important;
+  }
+}
+
+/* Servicios padding y tipografía en pantallas chicas */
+@media (max-width: 576px) {
+  .services .card-bodys {
+    padding-left: 1rem;
+  }
+  .services h3 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .work-item {
+    margin: 0.15rem;
+  }
+}
+
+/* Logos clientes responsive */
+@media (max-width: 768px) {
+  .brand-logo {
+    height: 36px;
+  }
+}
+@media (max-width: 480px) {
+  .brand-logo {
+    height: 28px;
+  }
+}
+
+/* Contacto responsive */
+@media (max-width: 992px) {
+  #contacto .row {
+    flex-direction: column;
+  }
+  #contacto .col-lg-7,
+  #contacto .col-lg-5 {
+    width: 100%;
+  }
+}
+
+/* Footer responsive */
+@media (max-width: 576px) {
+  footer {
+    padding: 32px 0 16px;
+  }
+}
+
+@media (max-width: 992px) {
+  .brand-logo { height: 40px; }
+}
+@media (max-width: 576px) {
+  .brand-logo { height: 32px; }
+}
+
+/* ===== Ajuste del texto animado sobre el video ===== */
+.hero h1.fancy-text {
+  display: flex;
+  flex-wrap: wrap;      /* permite que los spans bajen de línea si hace falta */
+  justify-content: center; /* centra horizontalmente todo el conjunto */
+  width: 100%;
+  text-align: center;
+  white-space: normal;
+}
+
+/* Asegura que los spans no rompan el flujo del ancho */
+.hero h1.fancy-text span {
+  display: inline-block;
+  text-align: center;
+}
+
+/* ===== NAVBAR que aparece después del video ===== */
+
+/* Estado inicial: oculta */
+.navbar {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Cuando se activa (después del hero) */
+.navbar.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Ajuste flechas del carrusel ===== */
+.carousel-control-prev,
+.carousel-control-next {
+  width: auto; /* evita que ocupen un ancho grande */
+}
+
+.carousel-control-prev {
+  left: 10px; /* más cerca del borde izquierdo */
+}
+
+.carousel-control-next {
+  right: 10px; /* más cerca del borde derecho */
+}
+
+/* Si querés que sean un poco más visibles */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: brightness(0) invert(1); /* iconos blancos */
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+/* ===== Logo sobre el video ===== */
+.hero-logo {
+  display: block;
+  margin: 0 auto 1rem auto; /* centra y agrega espacio abajo */
+  max-width: 20%;
+  height: auto;
+  z-index: 2;
+  position: relative;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)); /* opcional: mejora visibilidad */
+}
+
+@media (max-width: 768px) {
+  .hero-logo {
+    max-width: 120px;
+  }
+}
+
+/* ===== MÉTRICAS RESPONSIVE ===== */
+
+
+
+
+@media (max-width: 768px) {
+  .metrics .row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .metrics .col-md-4 {
+    width: 90%;
+  }
+
+  .metrics .card-bodys {
+    padding: 2rem 1rem;
+  }
+
+  .metrics .display-6 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .metrics .col-md-4 {
+    width: 100%;
+  }
+
+  .metrics .display-6 {
+    font-size: 1.7rem;
+  }
+}
+
+/* ===== Ajuste altura del video en pantallas grandes ===== */
+.hero {
+  height: 100vh; /* ocupa exactamente la altura de la pantalla */
+  overflow: hidden;
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* En pantallas muy grandes, asegura que el contenido no tape métricas */
+@media (min-width: 1600px) {
+  .hero {
+    height: 95vh; /* un poco menos para evitar solapamiento */
+  }
+}
+
+@media (min-height:1000px){
+  .hero{
+    padding-top: 10%;
+  }
+}
+
+/* ===== Ajuste del contenido interno del hero ===== */
+.hero {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Ajuste fino del logo blanco */
+.hero-logo {
+  max-width: 180px; /* tamaño visible más equilibrado */
+  margin-bottom: 0.5rem; /* menos espacio debajo */
+}
+
+/* Texto y subtítulo más cercanos */
+.hero h1.fancy-text {
+  margin-bottom: 0.5rem;
+}
+
+.hero p.lead {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
