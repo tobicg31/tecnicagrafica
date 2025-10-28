@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const group = document.createElement("div");
       group.className =
-        "d-flex justify-content-center gap-4 align-items-center flex-wrap";
+        "d-flex justify-content-center gap-4 align-items-center";
 
       // Tomar los logos del grupo
       allLogos
@@ -54,3 +54,4 @@ document.addEventListener("DOMContentLoaded", () => {
   rebuildCarousel(); // Construye al inicio
   window.addEventListener("resize", rebuildCarousel); // Reconstruye al cambiar tamaño
 });
+
