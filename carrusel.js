@@ -26,8 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
       slide.setAttribute("data-bs-interval", "2000"); // ← intervalo de 1s
 
       const group = document.createElement("div");
-      group.className =
-        "d-flex justify-content-center gap-4 align-items-center";
+      if (width < 431)
+        group.className ="d-flex justify-content-center gap-4 align-items-center flex-wrap";
+      else
+        group.className ="d-flex justify-content-center gap-4 align-items-center";
+
 
       // Tomar los logos del grupo
       allLogos
@@ -54,4 +57,3 @@ document.addEventListener("DOMContentLoaded", () => {
   rebuildCarousel(); // Construye al inicio
   window.addEventListener("resize", rebuildCarousel); // Reconstruye al cambiar tamaño
 });
-
