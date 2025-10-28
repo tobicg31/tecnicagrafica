@@ -564,20 +564,20 @@ section{ padding: 76px 0; }
 }
 
 .fancy-text {
-      font-size: 7rem;
+      font-size: 8vw;
       cursor: default;
       user-select: none;
       line-height: 1;
     }
 
-    .fancy-text span {
-      display: inline-block;
-      transition:
-        transform 0.25s ease,
-        color 0.25s ease,
-        font-family 0.25s ease,
-        margin 0.25s ease;
-    }
+.fancy-text span {
+  display: inline-block;
+  transition:
+    transform 0.25s ease,
+    color 0.25s ease,
+    font-family 0.25s ease,
+    margin 0.25s ease;
+}
 
     /* Cuando la letra se activa */
     .fancy-text span.active {
@@ -773,17 +773,17 @@ body.no-scroll { overflow: hidden; }
 }
 
 .carousel-control-prev {
-  left: 10px; /* más cerca del borde izquierdo */
+  left: 0; /* más cerca del borde izquierdo */
 }
 
 .carousel-control-next {
-  right: 10px; /* más cerca del borde derecho */
+  right: 0; /* más cerca del borde derecho */
 }
 
 /* Si querés que sean un poco más visibles */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  filter: brightness(0) invert(1); /* iconos blancos */
+  filter: brightness(0) invert(0); /* iconos blancos */
   width: 2.5rem;
   height: 2.5rem;
 }
@@ -891,3 +891,65 @@ body.no-scroll { overflow: hidden; }
   margin-top: 0;
   margin-bottom: 1rem;
 }
+
+/* --- En celulares: forzar que "Gráfica" quede debajo de "Técnica" --- */
+@media (max-width: 866px) {
+  .hero{
+    height: 80vh;
+    margin-top: 10vh;
+  }
+
+  .hero h1.fancy-text {
+    flex-wrap: wrap;            /* permite el salto */
+    justify-content: center;    /* centra todo el texto */
+    text-align: center;
+    font-size: 10vw;            /* tamaño adaptable */
+    line-height: 1.1;
+  }
+
+  /* Forzar el salto entre Técnica y Gráfica */
+  .hero h1.fancy-text span:nth-of-type(8)::after {
+    content: "\A";              /* salto de línea */
+    white-space: pre;           /* respeta el salto */
+  }
+
+  #quienes .col-lg-6{
+    padding: 0;
+    margin: 1rem;
+    width: fit-content;
+  }
+
+  #quienes .col-lg-6 p{
+    margin: 1rem;
+  }
+  #quienes .col-lg-6 a{
+    margin: 1rem;
+  }
+
+  #clientes{
+    padding: 2rem;
+    padding-bottom: 0;
+  }
+
+  #clientes h2{
+    font-size: large;
+  }
+
+  #carouselBrands{
+    margin-top: 1rem;
+  }
+
+  .carousel-control-prev, .carousel-control-next{
+    visibility: hidden;
+  }
+
+  .carousel-indicators {
+    margin-top: 2rem !important;
+  }
+
+}
+
+#quienes h2{
+  text-align: center;
+}
+
