@@ -690,6 +690,9 @@ body.no-scroll { overflow: hidden; }
   .services h3 {
     font-size: 1.1rem;
   }
+  .metrics {
+     padding-top:0 !important;
+  }
 }
 
 @media (max-width: 576px) {
