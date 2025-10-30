@@ -840,7 +840,7 @@ body.no-scroll { overflow: hidden; }
   .metrics .col-md-4 {
     padding: 0.5rem;
     width: 33%;
-    height: auto;
+    height: 10%;
   }
 
   .metrics .display-6 {
