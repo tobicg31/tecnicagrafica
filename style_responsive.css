@@ -691,7 +691,7 @@ body.no-scroll { overflow: hidden; }
     font-size: 1.1rem;
   }
   .metrics {
-     padding-top:0 !important;
+     padding-top: 2rem !important;
   }
 }
 
