@@ -836,7 +836,7 @@ body.no-scroll { overflow: hidden; }
     gap: 0;
     flex-direction: row;
   }
-  .metrics .card-body{
+  .metrics .card{
      height:10%;
   }
 
