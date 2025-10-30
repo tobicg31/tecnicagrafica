@@ -837,7 +837,12 @@ body.no-scroll { overflow: hidden; }
     flex-direction: row;
   }
   .metrics .card{
-     height:10%;
+     height:10rem;
+     justify-content: center;
+  }
+
+  .metrics p{
+    font-size: 3vw;
   }
 
   .metrics .col-md-4 {
