@@ -13,9 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
     let perSlide = 5;
     const width = window.innerWidth;
     if (width < 431) 
-      perSlide = 4; // ← antes era 2, ahora 4 logos en pantallas chicas
+      perSlide = 4;
+    else if (width < 600) 
+      perSlide = 2; // ← antes era 2, ahora 4 logos en pantallas chicas
     else if (width < 992) 
-      perSlide = 2;
+      perSlide = 3;
 
     // Agrupar logos
     const numSlides = Math.ceil(allLogos.length / perSlide);
@@ -57,4 +59,5 @@ document.addEventListener("DOMContentLoaded", () => {
   rebuildCarousel(); // Construye al inicio
   window.addEventListener("resize", rebuildCarousel); // Reconstruye al cambiar tamaño
 });
+
 
