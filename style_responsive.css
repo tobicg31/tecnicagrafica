@@ -916,7 +916,6 @@ body.no-scroll { overflow: hidden; }
 @media (max-width: 866px) {
   .hero{
     height: 80vh;
-    margin-top: 10vh;
   }
 
   .hero h1.fancy-text {
