@@ -832,12 +832,18 @@ body.no-scroll { overflow: hidden; }
 }
 
 @media (max-width: 480px) {
+  .metrics .row{
+    gap: 0;
+    flex-direction: row;
+  }
+
   .metrics .col-md-4 {
-    width: 100%;
+    padding: 0.5rem;
+    width: 33%;
   }
 
   .metrics .display-6 {
-    font-size: 1.7rem;
+    font-size: 1rem;
   }
 }
 
@@ -931,8 +937,8 @@ body.no-scroll { overflow: hidden; }
     padding-bottom: 0;
   }
 
-  #clientes h2{
-    font-size: large;
+  h2, ul > li > span{
+    font-size: large !important;
   }
 
   #carouselBrands{
