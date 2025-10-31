@@ -840,6 +840,10 @@ body.no-scroll { overflow: hidden; }
 }
 
 @media (max-width: 480px) {
+  .metrics {
+     padding-top: 2rem;
+  }
+   
   .metrics .row{
     gap: 0;
     flex-direction: row;
