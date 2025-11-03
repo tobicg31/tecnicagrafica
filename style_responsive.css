@@ -835,15 +835,20 @@ body.no-scroll { overflow: hidden; }
   .metrics .row{
     gap: 0;
     flex-direction: row;
+    align-items: stretch;
   }
 
   .metrics .col-md-4 {
     padding: 0.5rem;
+    height: auto;
     width: 33%;
   }
 
   .metrics .display-6 {
     font-size: 1rem;
+  }
+  .metrics p {
+    font-size: 0.8rem;
   }
 }
 
