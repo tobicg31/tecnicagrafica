@@ -959,3 +959,18 @@ body.no-scroll { overflow: hidden; }
   text-align: center;
 }
 
+#text {
+  white-space: nowrap;              /* Evita saltos de línea */
+  display: inline-block;
+  text-align: center;
+  width: auto;
+}
+
+#text span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#text span.active {
+  transform: scale(1.05);           /* Suaviza el cambio visual */
+}
