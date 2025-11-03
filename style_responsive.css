@@ -586,7 +586,7 @@ section{ padding: 76px 0; }
     }
 
 /* ===== LIGHTBOX CON NAVEGACIÓN ===== */
-#lightbox {
+#lightbox, #serviciosimg {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.9);
@@ -599,12 +599,12 @@ section{ padding: 76px 0; }
   z-index: 9999;
 }
 
-#lightbox.show {
+#lightbox.show, #serviciosimg.show {
   opacity: 1;
   visibility: visible;
 }
 
-#lightbox img {
+#lightbox img, #serviciosimg img {
   max-width: 90%;
   max-height: 90%;
   border-radius: 1rem;
@@ -613,13 +613,13 @@ section{ padding: 76px 0; }
   transition: transform 0.4s ease;
 }
 
-#lightbox.show img {
+#lightbox.show img, #serviciosimg.show img {
   transform: scale(1);
   cursor: zoom-out;
 }
 
 /* Botones de navegación */
-#lightbox .nav-btn {
+#lightbox .nav-btn, #serviciosimg .nav-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -634,12 +634,12 @@ section{ padding: 76px 0; }
   transition: background 0.3s ease;
 }
 
-#lightbox .nav-btn:hover {
+#lightbox .nav-btn:hover, #serviciosimg .nav-btn:hover {
   background: rgba(255, 255, 255, 0.35);
 }
 
-#lightbox #prev-btn { left: 3%; }
-#lightbox #next-btn { right: 3%; }
+#lightbox #prev-btn, #serviciosimg #atras-btn { left: 3%; }
+#lightbox #next-btn, #serviciosimg #sig-btn { right: 3%; }
 
 /* Evita scroll del body */
 body.no-scroll { overflow: hidden; }
@@ -689,9 +689,6 @@ body.no-scroll { overflow: hidden; }
   }
   .services h3 {
     font-size: 1.1rem;
-  }
-  .metrics {
-     padding-top: 2rem !important;
   }
 }
 
@@ -814,20 +811,15 @@ body.no-scroll { overflow: hidden; }
 
 
 @media (max-width: 768px) {
-  .metrics .row{
-    gap: 0;
-    flex-direction: row;
+  .metrics .row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
   }
 
-   .metrics .card{
-     height:10rem;
-     justify-content: center;
-  }
-   
   .metrics .col-md-4 {
-    padding: 0.5rem;
-    width: 33%;
-    height: 10%;
+    width: 90%;
   }
 
   .metrics .card-bodys {
@@ -840,27 +832,14 @@ body.no-scroll { overflow: hidden; }
 }
 
 @media (max-width: 480px) {
-  .metrics {
-     padding-top: 2rem;
-  }
-   
   .metrics .row{
     gap: 0;
     flex-direction: row;
-  }
-  .metrics .card{
-     height:10rem;
-     justify-content: center;
-  }
-
-  .metrics p{
-    font-size: 3vw;
   }
 
   .metrics .col-md-4 {
     padding: 0.5rem;
     width: 33%;
-    height: 10%;
   }
 
   .metrics .display-6 {
@@ -923,6 +902,7 @@ body.no-scroll { overflow: hidden; }
 @media (max-width: 866px) {
   .hero{
     height: 80vh;
+    margin-top: 10vh;
   }
 
   .hero h1.fancy-text {
