@@ -831,7 +831,7 @@ body.no-scroll { overflow: hidden; }
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 500px) {
   .metrics .row{
     gap: 0;
     flex-direction: row;
